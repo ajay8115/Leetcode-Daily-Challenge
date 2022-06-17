@@ -1,0 +1,32 @@
+int helper(TreeNode *root, int &count)
+    {
+        if (root == NULL)
+        {
+            return -1;
+        }
+
+        int left = helper(root->left, count);
+        int right = helper(root->right, count);
+
+        if (left == 1 || right == 1)
+        {
+            count++;
+
+            return 0;
+        }
+
+        else if (left == 0 || right == 0)
+        {
+            return -1;
+        }
+
+        return 1;
+    }
+    int minCameraCover(TreeNode *root)
+    {
+        int count = 0;
+        int ans = helper(root, count);
+
+        ans = ans == 1 ? count + 1 : count;
+        return ans;
+    }
